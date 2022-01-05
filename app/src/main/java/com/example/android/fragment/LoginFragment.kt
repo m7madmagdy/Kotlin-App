@@ -44,7 +44,6 @@ class LoginFragment : Fragment() {
             }
         }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -93,13 +92,12 @@ class LoginFragment : Fragment() {
             // clicking it, it will cancel the process of
             // fingerprint authentication
             val biometricPrompt = BiometricPrompt.Builder(requireActivity())
-                .setTitle("Title of Prompt")
-                .setSubtitle("Subtitle")
-                .setDescription("Uses FP")
+                .setTitle("Finger Print")
+                .setSubtitle("Login With your finger")
                 .setNegativeButton(
                     "Cancel",
                     requireActivity().mainExecutor,
-                    DialogInterface.OnClickListener { dialog, which ->
+                    DialogInterface.OnClickListener { _, _ ->
                         notifyUser("Authentication Cancelled")
                     }).build()
 
