@@ -1,5 +1,5 @@
 # Sample Design for Login and User Add Recycler View
-### Login Screen with name and password
+### Login Screen with name and password Or Finger Print
 <img src="https://m7madmagdy.github.io/pages/login.jpg" alt="Login Screen" style="width:200px;"/>
 
 ### Simple List RecyclerView
