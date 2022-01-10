@@ -11,7 +11,6 @@
     android:orientation="vertical"
     tools:context=".fragment.LoginFragment">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -44,7 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                app:hintEnabled="false">
+                app:hintTextColor="@color/blue200"
+                app:hintEnabled="true">
 
                 <EditText
                     android:id="@+id/name"
@@ -63,7 +63,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                app:hintEnabled="false"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/blue200"
                 app:passwordToggleEnabled="true">
 
                 <EditText
@@ -122,7 +123,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/fingerPrint"
+        android:id="@+id/fingerPrintImg"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"

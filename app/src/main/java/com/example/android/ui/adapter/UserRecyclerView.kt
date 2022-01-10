@@ -8,15 +8,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.R
-import com.example.android.model.User
+import com.example.android.model.entity.User
 
 class UserRecyclerView : RecyclerView.Adapter<UserRecyclerView.UserViewHolder>() {
 
     var onListItemClick:OnListItemClick? = null
-    var userList: ArrayList<User> = ArrayList()
+    private var userList: List<User> = emptyList()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(userList: ArrayList<User>) {
+    fun setList(userList: List<User>) {
         this.userList = userList
         notifyDataSetChanged()
     }
@@ -39,8 +39,7 @@ class UserRecyclerView : RecyclerView.Adapter<UserRecyclerView.UserViewHolder>()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return UserViewHolder(view)
     }
 
