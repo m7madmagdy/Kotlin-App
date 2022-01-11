@@ -1,5 +1,6 @@
-package com.example.android.fragment
+package com.example.android.ui.fragment
 
+import android.annotation.SuppressLint
 import android.app.KeyguardManager
 import android.content.Context
 import android.content.SharedPreferences
@@ -11,6 +12,7 @@ import android.os.CancellationSignal
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -21,9 +23,9 @@ import com.example.android.databinding.FragmentLoginBinding
 import com.example.android.ui.adapter.HideKeyboard
 
 class LoginFragment : Fragment() {
-    lateinit var binding: FragmentLoginBinding
-    private var baseName: String = "Mohamed Magdy"
-    private var basePassword: String = "m7madmagdy@app"
+    private lateinit var binding: FragmentLoginBinding
+    private val baseName: String = "Mohamed Magdy"
+    private val basePassword: String = "m7madmagdy@app"
     private var cancellationSignal: CancellationSignal? = null
     private val authenticationCallback: BiometricPrompt.AuthenticationCallback
         get() = @RequiresApi(Build.VERSION_CODES.P)
@@ -53,6 +55,8 @@ class LoginFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var myShared: SharedPreferences? = null
+
         /** hide actionBar **/
         (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
 
@@ -76,8 +80,6 @@ class LoginFragment : Fragment() {
                     HideKeyboard.hide(requireActivity(), requireView())
                 }
         }
-
-
 
         checkBiometricSupport()
         binding.fingerPrintImg.setOnClickListener {

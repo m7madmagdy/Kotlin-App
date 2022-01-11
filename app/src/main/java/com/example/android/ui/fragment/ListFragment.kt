@@ -1,6 +1,9 @@
-package com.example.android.fragment
+package com.example.android.ui.fragment
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +21,7 @@ import com.example.android.ui.adapter.OnListItemClick
 import com.example.android.ui.adapter.UserRecyclerView
 import kotlinx.coroutines.*
 
+@ExperimentalCoroutinesApi
 @DelicateCoroutinesApi
 class ListFragment : Fragment(), OnListItemClick {
 
@@ -29,6 +33,7 @@ class ListFragment : Fragment(), OnListItemClick {
     private val userRecyclerView: UserRecyclerView by lazy {
         UserRecyclerView()
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,12 +45,13 @@ class ListFragment : Fragment(), OnListItemClick {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        refresh()
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
         name = arguments?.getString("name").toString()
 
-        val db = UserDatabase.getInstance(requireContext())
-        localRepositoryImp = LocalRepositoryImp(db)
+        val database = UserDatabase.getInstance(requireContext())
+        localRepositoryImp = LocalRepositoryImp(database)
 
         binding.recyclerView.adapter = userRecyclerView
 
@@ -53,10 +59,10 @@ class ListFragment : Fragment(), OnListItemClick {
         binding.addBtn.setOnClickListener {
             val msg = binding.edtTextMessage.text.toString()
             GlobalScope.launch(Dispatchers.IO) {
-                localRepositoryImp.insertOrUpdateUser(
+                localRepositoryImp.insertUser(
                     User(
                         0,
-                        name.toString(),
+                        name,
                         msg,
                         R.drawable.programmer
                     )
@@ -82,11 +88,24 @@ class ListFragment : Fragment(), OnListItemClick {
         }
     }
 
+    private fun refresh() {
+        val handler = Handler(Looper.getMainLooper()!!)
+        binding.swipe.setColorSchemeResources(R.color.white)
+        binding.swipe.setProgressBackgroundColorSchemeResource(R.color.blue200)
+        binding.swipe.setOnRefreshListener {
+            handler.postDelayed({
+                binding.swipe.isRefreshing = false
+                getAllUsers()
+            }, 1000)
+        }
+    }
+
     override fun onItemClick(user: User) {
         val title = "Alert Delete !"
         val message = "Are You sure delete this user ?"
         val positiveButton = "Yes"
         val negativeButton = "No"
+        val editButton = "Edit"
 
         val alertDialogBuilder = AlertDialog.Builder(requireContext())
         alertDialogBuilder.setTitle(title)
@@ -102,6 +121,11 @@ class ListFragment : Fragment(), OnListItemClick {
         }
         alertDialogBuilder.setNegativeButton(Html.fromHtml("<font color='#59A5E1'>$negativeButton</font>")) { _, _ ->
             notify("Click No !")
+        }
+        alertDialogBuilder.setNeutralButton(Html.fromHtml("<font color='#59A5E1'>$editButton</font>")) { _, _ ->
+            GlobalScope.launch (Dispatchers.IO){
+                localRepositoryImp.updateUser(user)
+            }
         }
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()

@@ -8,8 +8,10 @@ import com.example.android.model.entity.User
 
 private const val DATABASE_NAME = "user_database"
 @Database(entities = [User::class], version = 1, exportSchema = false)
+
 abstract class UserDatabase : RoomDatabase() {
     abstract fun userDAO(): UserDAO
+
     companion object {
         @Volatile
         private var instance: UserDatabase? = null

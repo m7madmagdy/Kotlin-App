@@ -16,9 +16,15 @@ class LocalRepositoryImp(private val db: UserDatabase) : LocalRepository {
         }
     }
 
-    override suspend fun insertOrUpdateUser(user: User) {
+    override suspend fun insertUser(user: User) {
         withContext(Dispatchers.IO) {
-            db.userDAO().insertOrUpdateUser(user)
+            db.userDAO().insertUser(user)
+        }
+    }
+
+    override suspend fun updateUser(user: User) {
+        withContext(Dispatchers.IO) {
+            db.userDAO().updateUser(user)
         }
     }
 }

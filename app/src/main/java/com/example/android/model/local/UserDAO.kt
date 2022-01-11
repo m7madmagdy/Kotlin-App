@@ -6,7 +6,10 @@ import com.example.android.model.entity.User
 @Dao
 interface UserDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertOrUpdateUser(user: User)
+    suspend fun insertUser(user: User)
+
+    @Update
+    suspend fun updateUser(user: User)
 
     @Delete
     suspend fun deleteUser(user: User)
