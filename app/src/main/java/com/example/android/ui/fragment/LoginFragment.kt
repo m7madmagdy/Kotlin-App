@@ -18,7 +18,10 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.example.android.R
 import com.example.android.databinding.FragmentLoginBinding
 import com.example.android.ui.adapter.HideKeyboard
 
@@ -55,10 +58,10 @@ class LoginFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var myShared: SharedPreferences? = null
 
         /** hide actionBar **/
-        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+        val activity = (activity as AppCompatActivity?)!!
+        activity.supportActionBar!!.hide()
 
         val name = binding.name
         val password = binding.password

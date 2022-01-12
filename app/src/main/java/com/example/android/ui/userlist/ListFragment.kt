@@ -1,0 +1,117 @@
+package com.example.android.ui.userlist
+
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.text.Html
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.android.R
+import com.example.android.databinding.FragmentListBinding
+import com.example.android.model.entity.User
+import com.example.android.ui.adapter.OnListItemClick
+import com.example.android.ui.adapter.UserRecyclerView
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+
+@ExperimentalCoroutinesApi
+@DelicateCoroutinesApi
+class ListFragment : Fragment(), OnListItemClick {
+
+    private lateinit var binding: FragmentListBinding
+    private lateinit var name: String
+    private lateinit var viewModel: UsersViewModel
+    private val userRecyclerView: UserRecyclerView by lazy {
+        UserRecyclerView()
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        // Inflate the layout for this fragment
+        binding = FragmentListBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        refresh()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+        name = arguments?.getString("name").toString()
+        binding.recyclerView.adapter = userRecyclerView
+        viewModel = ViewModelProvider(requireActivity()).get(UsersViewModel::class.java)
+
+        getAllUsers()
+        binding.addBtn.setOnClickListener {
+            val msg = binding.edtTextMessage.text.toString()
+            viewModel.addUser(
+                User(
+                    0,
+                    name,
+                    msg,
+                    R.drawable.programmer
+                )
+            )
+            getAllUsers()
+            binding.edtTextMessage.setText("")
+        }
+        userRecyclerView.onListItemClick = this
+        viewModel.usersLiveData.observe(viewLifecycleOwner, {
+            userRecyclerView.setList(it)
+        })
+    }
+
+    private fun getAllUsers() {
+        viewModel.getUsers()
+    }
+
+    private fun refresh() {
+        val handler = Handler(Looper.getMainLooper()!!)
+        binding.swipe.setColorSchemeResources(R.color.white)
+        binding.swipe.setProgressBackgroundColorSchemeResource(R.color.blue200)
+        binding.swipe.setOnRefreshListener {
+            handler.postDelayed({
+                binding.swipe.isRefreshing = false
+                getAllUsers()
+            }, 1000)
+        }
+    }
+
+    override fun onItemClick(user: User) {
+        val title = "Alert Delete !"
+        val message = "Are You sure delete this user ?"
+        val positiveButton = "Yes"
+        val negativeButton = "No"
+        val editButton = "Edit"
+
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        alertDialogBuilder.setTitle(title)
+        alertDialogBuilder.setMessage(message)
+        alertDialogBuilder.setIcon(R.mipmap.ic_launcher)
+        alertDialogBuilder.setCancelable(true)
+        alertDialogBuilder.setPositiveButton(Html.fromHtml("<font color='#59A5E1'>$positiveButton</font>")) { _, _ ->
+            viewModel.deleteUser(user)
+            notify("${user.message} Deleted")
+            getAllUsers()
+        }
+        alertDialogBuilder.setNegativeButton(Html.fromHtml("<font color='#59A5E1'>$negativeButton</font>")) { _, _ ->
+            notify("Click No !")
+        }
+        alertDialogBuilder.setNeutralButton(Html.fromHtml("<font color='#59A5E1'>$editButton</font>")) { _, _ ->
+            notify("Edit")
+        }
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
+    }
+
+    private fun notify(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+}

@@ -1,9 +1,9 @@
 package com.example.android.ui
 
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
 import com.example.android.R
 import com.example.android.databinding.ActivityMainBinding
 

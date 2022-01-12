@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.android.ui.fragment.ListFragment"
+        android:name="com.example.android.ui.userlist.ListFragment"
         android:label="Fragment List"
         tools:layout="@layout/fragment_list">
         <argument
