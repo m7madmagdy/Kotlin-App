@@ -28,7 +28,7 @@ import com.example.android.ui.adapter.HideKeyboard
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private val baseName: String = "Mohamed Magdy"
-    private val basePassword: String = "m7madmagdy@app"
+    private val basePassword: String = "m7mad@app"
     private var cancellationSignal: CancellationSignal? = null
     private val authenticationCallback: BiometricPrompt.AuthenticationCallback
         get() = @RequiresApi(Build.VERSION_CODES.P)
@@ -66,7 +66,6 @@ class LoginFragment : Fragment() {
         val name = binding.name
         val password = binding.password
         binding.loginButton.setOnClickListener {
-
             if (name.text.toString().isEmpty() || password.text.toString()
                     .isEmpty()
             ) {
@@ -80,7 +79,6 @@ class LoginFragment : Fragment() {
                     notify("Login Successfully \uD83D\uDE0D")
                     val action = LoginFragmentDirections.actionLoginFragmentToListFragment(baseName)
                     findNavController().navigate(action)
-                    HideKeyboard.hide(requireActivity(), requireView())
                 }
         }
 
@@ -113,8 +111,7 @@ class LoginFragment : Fragment() {
     // it checks whether the app the app has fingerprint permission
     @RequiresApi(Build.VERSION_CODES.M)
     private fun checkBiometricSupport(): Boolean {
-        val keyguardManager =
-            requireActivity().getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+        val keyguardManager = requireActivity().getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
         if (!keyguardManager.isDeviceSecure) {
             notify("Fingerprint authentication has not been enabled in settings")
             return false

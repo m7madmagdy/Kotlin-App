@@ -21,10 +21,4 @@ class LocalRepositoryImp(private val db: UserDatabase) : LocalRepository {
             db.userDAO().insertUser(user)
         }
     }
-
-    override suspend fun updateUser(user: User) {
-        withContext(Dispatchers.IO) {
-            db.userDAO().updateUser(user)
-        }
-    }
 }

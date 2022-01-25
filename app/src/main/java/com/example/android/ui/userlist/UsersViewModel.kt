@@ -22,25 +22,19 @@ class UsersViewModel(application: Application) : AndroidViewModel(application) {
         localRepositoryImp = LocalRepositoryImp(database)
     }
 
-    fun getUsers() = viewModelScope.launch {
+    fun getUsers() = viewModelScope.launch(Dispatchers.IO) {
         usersMutableLiveData.postValue(localRepositoryImp.getUsers())
     }
 
-    fun addUser(user: User) {
+    fun insertUser(user: User) {
         viewModelScope.launch(Dispatchers.IO) {
             localRepositoryImp.insertUser(user)
         }
     }
 
     fun deleteUser(user: User) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             localRepositoryImp.deleteUser(user)
-        }
-    }
-
-    fun updateUser(user: User) {
-        viewModelScope.launch {
-            localRepositoryImp.updateUser(user)
         }
     }
 }

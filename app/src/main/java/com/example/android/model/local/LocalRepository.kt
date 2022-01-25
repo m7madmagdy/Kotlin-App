@@ -6,5 +6,4 @@ interface LocalRepository {
     suspend fun getUsers():List<User>
     suspend fun deleteUser(user: User)
     suspend fun insertUser(user: User)
-    suspend fun updateUser(user: User)
 }

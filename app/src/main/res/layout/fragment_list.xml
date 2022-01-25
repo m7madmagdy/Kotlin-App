@@ -29,8 +29,9 @@
                 android:background="#DBDBDB"
                 android:orientation="vertical"
                 android:scrollbarSize="5dp"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbarThumbVertical="@color/blue200"
                 android:scrollbars="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/list_item" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

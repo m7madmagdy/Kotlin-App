@@ -7,13 +7,8 @@ import com.example.android.model.entity.User
 interface UserDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(user: User)
-
-    @Update
-    suspend fun updateUser(user: User)
-
     @Delete
     suspend fun deleteUser(user: User)
-
     @Query("select * from user_table")
     suspend fun getUsers():List<User>
 }
