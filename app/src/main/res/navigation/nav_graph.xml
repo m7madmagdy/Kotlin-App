@@ -23,7 +23,5 @@
         android:name="com.example.android.ui.userlist.ListFragment"
         android:label="Fragment List"
         tools:layout="@layout/fragment_list">
-        <argument android:name="name" />
     </fragment>
-
 </navigation>

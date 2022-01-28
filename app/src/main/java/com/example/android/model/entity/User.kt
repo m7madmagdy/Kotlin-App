@@ -9,7 +9,7 @@ data class User(
     @PrimaryKey(autoGenerate = true)
     var id: Int,
     @ColumnInfo(name = "user_name")
-    var name: String,
+    var task: String,
     var message: String,
     var imageId: Int
 )

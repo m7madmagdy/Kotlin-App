@@ -27,7 +27,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 class ListFragment : Fragment(), OnListItemClick {
 
     private lateinit var binding: FragmentListBinding
-    private lateinit var name: String
     private lateinit var viewModel: UsersViewModel
     private lateinit var linearLayoutManager: LinearLayoutManager
     private val userRecyclerView: UserRecyclerView by lazy {
@@ -47,7 +46,6 @@ class ListFragment : Fragment(), OnListItemClick {
         super.onViewCreated(view, savedInstanceState)
         refresh()
         (activity as AppCompatActivity?)!!.supportActionBar!!.show()
-        name = arguments?.getString("name").toString()
         binding.recyclerView.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(activity)
         binding.recyclerView.layoutManager = linearLayoutManager
@@ -58,9 +56,11 @@ class ListFragment : Fragment(), OnListItemClick {
 
         getAllUsers()
         binding.addBtn.setOnClickListener {
-            val msg = binding.edtTextMessage.text.toString()
-            viewModel.insertUser(User(0, name, msg, R.drawable.programmer))
+            val task = binding.edtTextTask.text.toString()
+            val message = binding.edtTextMessage.text.toString()
+            viewModel.insertUser(User(0, task, message, R.drawable.programmer))
             binding.edtTextMessage.setText("")
+            binding.edtTextTask.setText("")
             getAllUsers()
         }
         userRecyclerView.onListItemClick = this
@@ -87,7 +87,7 @@ class ListFragment : Fragment(), OnListItemClick {
 
     override fun onItemClick(user: User) {
         val title = "Alert Delete !"
-        val message = "Are You sure delete this user ?"
+        val message = "Are You sure delete this Task ?"
         val positiveButton = "Yes"
         val negativeButton = "No"
 

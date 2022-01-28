@@ -24,12 +24,12 @@ class UserRecyclerView : RecyclerView.Adapter<UserRecyclerView.UserViewHolder>()
     //ViewHolder
     inner class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var progImage: ImageView = itemView.findViewById(R.id.programmer)
-        var name: TextView = itemView.findViewById(R.id.name)
+        var task: TextView = itemView.findViewById(R.id.task)
         var message: TextView = itemView.findViewById(R.id.message)
 
         fun bind(user: User) {
             progImage.setImageResource(user.imageId)
-            name.text = user.name
+            task.text = user.task
             message.text = user.message
 
             itemView.setOnClickListener {

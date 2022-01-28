@@ -12,18 +12,16 @@ import android.os.CancellationSignal
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.NavigationUI
-import com.example.android.R
 import com.example.android.databinding.FragmentLoginBinding
-import com.example.android.ui.adapter.HideKeyboard
+import android.content.Context.MODE_PRIVATE
+import android.content.Context.MODE_PRIVATE
+
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -41,7 +39,7 @@ class LoginFragment : Fragment() {
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult?) {
                 super.onAuthenticationSucceeded(result!!)
                 notify("Login Successfully \uD83D\uDE0D")
-                val action = LoginFragmentDirections.actionLoginFragmentToListFragment(baseName)
+                val action = LoginFragmentDirections.actionLoginFragmentToListFragment()
                 findNavController().navigate(action)
             }
         }
@@ -55,19 +53,20 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("CommitPrefEdits")
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loadData()
 
         /** hide actionBar **/
         val activity = (activity as AppCompatActivity?)!!
         activity.supportActionBar!!.hide()
 
-        val name = binding.name
-        val password = binding.password
+        val name = binding.edtName
+        val password = binding.edtPassword
         binding.loginButton.setOnClickListener {
-            if (name.text.toString().isEmpty() || password.text.toString()
-                    .isEmpty()
+            if (name.text.toString().isEmpty() || password.text.toString().isEmpty()
             ) {
                 name.error = "Enter Your Name \uD83D\uDE02"
                 password.error = "Enter Your Password \uD83D\uDC40"
@@ -77,8 +76,16 @@ class LoginFragment : Fragment() {
             } else if (name.text.toString().isNotEmpty() && password.text.toString().isNotEmpty())
                 if (name.text.toString() == baseName && password.text.toString() == basePassword) {
                     notify("Login Successfully \uD83D\uDE0D")
-                    val action = LoginFragmentDirections.actionLoginFragmentToListFragment(baseName)
+                    val action = LoginFragmentDirections.actionLoginFragmentToListFragment()
                     findNavController().navigate(action)
+
+                    // Save Login Data
+                    val sharedPreferences: SharedPreferences =
+                        requireActivity().getSharedPreferences("saveData", 0)
+                    val editor: SharedPreferences.Editor? = sharedPreferences.edit()
+                    editor?.putString("name", name.text.toString())
+                    editor?.putString("pass", password.text.toString())
+                    editor?.apply()
                 }
         }
 
@@ -100,6 +107,14 @@ class LoginFragment : Fragment() {
         }
     }
 
+    private fun loadData() {
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("saveData", 0)
+        val name: String? = sharedPreferences.getString("name", "")
+        val pass: String? = sharedPreferences.getString("pass", "")
+        binding.edtName.setText(name)
+        binding.edtPassword.setText(pass)
+    }
+
     private fun getCancellationSignal(): CancellationSignal {
         cancellationSignal = CancellationSignal()
         cancellationSignal?.setOnCancelListener {
@@ -111,7 +126,8 @@ class LoginFragment : Fragment() {
     // it checks whether the app the app has fingerprint permission
     @RequiresApi(Build.VERSION_CODES.M)
     private fun checkBiometricSupport(): Boolean {
-        val keyguardManager = requireActivity().getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+        val keyguardManager =
+            requireActivity().getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
         if (!keyguardManager.isDeviceSecure) {
             notify("Fingerprint authentication has not been enabled in settings")
             return false

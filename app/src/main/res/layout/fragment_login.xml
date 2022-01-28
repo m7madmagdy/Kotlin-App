@@ -47,7 +47,7 @@
                 app:hintEnabled="true">
 
                 <EditText
-                    android:id="@+id/name"
+                    android:id="@+id/edtName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/blue200"
@@ -68,7 +68,7 @@
                 app:passwordToggleEnabled="true">
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/edtPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/blue200"

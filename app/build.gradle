@@ -52,6 +52,7 @@ dependencies {
     implementation "androidx.biometric:biometric-ktx:1.2.0-alpha04"
     implementation "androidx.activity:activity-ktx:$rootProject.activityVersion"
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'androidx.preference:preference:1.1.1'
 
     // Room components
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"

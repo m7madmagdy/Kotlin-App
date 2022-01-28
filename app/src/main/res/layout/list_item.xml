@@ -26,13 +26,13 @@
             android:src="@drawable/programmer"/>
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/task"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cairo_black"
-                android:text="Name"
+                android:text="Task"
                 android:textColor="#D55026"
-                android:textSize="16sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/message"
@@ -42,6 +42,6 @@
                 android:textStyle="bold"
                 android:textColor="#131F27"
                 android:text="Message"
-                android:textSize="12sp" />
+                android:textSize="18sp" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
