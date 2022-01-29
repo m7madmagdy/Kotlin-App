@@ -42,7 +42,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 app:hintTextColor="@color/blue200"
                 app:hintEnabled="true">
 
@@ -62,7 +62,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
                 app:hintEnabled="true"
                 app:hintTextColor="@color/blue200"
                 app:passwordToggleEnabled="true">
@@ -81,13 +81,14 @@
             <Button
                 android:id="@+id/login_button"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/login_button"
-                android:fontFamily="@font/cairo_bold"
-                android:text="login"
+                android:fontFamily="@font/seg_ui_semibold"
+                android:text="Login"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
     </ScrollView>

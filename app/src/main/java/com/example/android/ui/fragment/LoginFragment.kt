@@ -25,8 +25,8 @@ import android.content.Context.MODE_PRIVATE
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
-    private val baseName: String = "Mohamed Magdy"
-    private val basePassword: String = "m7mad@app"
+    private val baseName: String = "Kotlin App"
+    private val basePassword: String = "app@kotlin"
     private var cancellationSignal: CancellationSignal? = null
     private val authenticationCallback: BiometricPrompt.AuthenticationCallback
         get() = @RequiresApi(Build.VERSION_CODES.P)
@@ -80,8 +80,7 @@ class LoginFragment : Fragment() {
                     findNavController().navigate(action)
 
                     // Save Login Data
-                    val sharedPreferences: SharedPreferences =
-                        requireActivity().getSharedPreferences("saveData", 0)
+                    val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("saveData", 0)
                     val editor: SharedPreferences.Editor? = sharedPreferences.edit()
                     editor?.putString("name", name.text.toString())
                     editor?.putString("pass", password.text.toString())

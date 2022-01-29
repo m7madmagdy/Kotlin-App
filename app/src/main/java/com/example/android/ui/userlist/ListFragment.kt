@@ -65,7 +65,11 @@ class ListFragment : Fragment(), OnListItemClick {
         }
         userRecyclerView.onListItemClick = this
         viewModel.usersLiveData.observe(viewLifecycleOwner, {
-            userRecyclerView.setList(it)
+            if (it != null){
+                userRecyclerView.setList(it)
+                binding.progressBar.visibility = View.GONE
+                binding.recyclerView.visibility = View.VISIBLE
+            }
         })
     }
 

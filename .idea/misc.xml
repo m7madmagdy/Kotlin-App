@@ -10,7 +10,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2841880341880342" />
         <entry key="app/src/main/res/layout/fragment_finger.xml" value="0.25982905982905985" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.28076923076923077" />
-        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25982905982905985" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.5" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.28076923076923077" />
       </map>
     </option>
