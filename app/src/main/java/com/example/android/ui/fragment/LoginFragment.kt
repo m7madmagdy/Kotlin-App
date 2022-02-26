@@ -93,9 +93,9 @@ class LoginFragment : Fragment() {
             val biometricPrompt = BiometricPrompt.Builder(requireActivity())
                 .setTitle("Finger Print")
                 .setSubtitle("Login With Your Finger")
-                .setNegativeButton("Cancel", requireActivity().mainExecutor, { _, _ ->
+                .setNegativeButton("Cancel", requireActivity().mainExecutor) { _, _ ->
                     notify("Authentication Cancelled")
-                }).build()
+                }.build()
 
             // start the authenticationCallback in mainExecutor
             biometricPrompt.authenticate(

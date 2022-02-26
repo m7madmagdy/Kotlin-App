@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.android">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,7 +16,9 @@
         android:label="@string/app_name"
         android:supportsRtl="false"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/Theme.LoginApp">
+        android:theme="@style/Theme.LoginApp"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        tools:targetApi="s">
 
         <activity
             android:name=".MainActivity"
