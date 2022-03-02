@@ -9,7 +9,7 @@
     android:backgroundTint="@color/blue200"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ui.fragment.LoginFragment">
+    tools:context=".ui.login.LoginFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -43,8 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                app:hintTextColor="@color/blue200"
-                app:hintEnabled="true">
+                app:hintEnabled="true"
+                app:hintTextColor="@color/blue200">
 
                 <EditText
                     android:id="@+id/edtName"
@@ -82,7 +82,10 @@
                 android:id="@+id/login_button"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="right"
                 android:background="@drawable/login_button"
                 android:fontFamily="@font/seg_ui_semibold"
                 android:text="Login"
@@ -123,12 +126,22 @@
             android:background="@color/blue200" />
     </LinearLayout>
 
-    <ImageView
+    <Button
         android:id="@+id/fingerPrintImg"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginTop="25dp"
-        android:fontFamily="@font/cairo_black"
-        android:src="@drawable/fingerprint" />
+        android:layout_margin="25dp"
+        android:background="@drawable/login_button"
+        android:drawablePadding="-120dp"
+        android:paddingLeft="120dp"
+        android:elevation="20dp"
+        android:drawableStart="@drawable/ic_fingerprint"
+        android:fontFamily="@font/seg_ui_semibold"
+        android:gravity="center"
+        android:text="Finger Print"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
 </LinearLayout>

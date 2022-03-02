@@ -64,13 +64,13 @@ class ListFragment : Fragment(), OnListItemClick {
             getAllUsers()
         }
         userRecyclerView.onListItemClick = this
-        viewModel.usersLiveData.observe(viewLifecycleOwner, {
-            if (it != null){
+        viewModel.usersLiveData.observe(viewLifecycleOwner) {
+            if (it != null) {
                 userRecyclerView.setList(it)
                 binding.progressBar.visibility = View.GONE
                 binding.recyclerView.visibility = View.VISIBLE
             }
-        })
+        }
     }
 
     private fun getAllUsers() {

@@ -67,7 +67,9 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
+                                                <entry key="color" value="000000" />
                                                 <entry key="imagePath" value="/tmp/ic_android_black_24dp.xml" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -89,9 +91,10 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="color" value="51ff0d" />
-                                                <entry key="fontFamily" value="Cantarell Extra Bold" />
-                                                <entry key="text" value="Kotlin App" />
+                                                <entry key="color" value="ffffff" />
+                                                <entry key="fontFamily" value="Yrsa Medium" />
+                                                <entry key="scalingPercent" value="120" />
+                                                <entry key="text" value="Finger Print" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -102,9 +105,10 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="color" value="51ff0d" />
-                                                <entry key="fontFamily" value="Cantarell Extra Bold" />
-                                                <entry key="text" value="Kotlin App" />
+                                                <entry key="color" value="ffffff" />
+                                                <entry key="fontFamily" value="Yrsa Medium" />
+                                                <entry key="scalingPercent" value="120" />
+                                                <entry key="text" value="Finger Print" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -115,7 +119,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="000000" />
+                                      <entry key="backgroundColor" value="2a2a2a" />
                                       <entry key="foregroundAssetType" value="TEXT" />
                                     </map>
                                   </option>
@@ -285,6 +289,42 @@
                                 </PersistentState>
                               </value>
                             </entry>
+                          </map>
+                        </option>
+                      </PersistentState>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </PersistentState>
+          </value>
+        </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState>
+              <option name="children">
+                <map>
+                  <entry key="vectorAssetStep">
+                    <value>
+                      <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="clipartAsset">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/fingerprint/baseline_fingerprint_24.xml" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                        <option name="values">
+                          <map>
+                            <entry key="outputName" value="ic_fingerprint" />
                           </map>
                         </option>
                       </PersistentState>

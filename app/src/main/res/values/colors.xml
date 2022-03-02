@@ -9,4 +9,5 @@
     <color name="white">#FFFFFF</color>
     <color name="blue200">#3475A8</color>
     <color name="loginBkColor">#f0f0f0</color>
+    <color name="black">#0E0E0E</color>
 </resources>
