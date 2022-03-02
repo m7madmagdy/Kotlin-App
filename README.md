@@ -8,7 +8,7 @@
 
 
 ### Simple Notes
-<img src="https://m7madmagdy.github.io/pages/note_page.png" alt="Notes List" style="width:200px;"/>
+<img src="https://m7madmagdy.github.io/pages/notes_page.png" alt="Notes List" style="width:200px;"/>
 
 
 ### Deleted Notes
