@@ -9,7 +9,7 @@
     android:backgroundTint="@color/blue200"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ui.login.LoginFragment">
+    tools:context=".ui.fragments.LoginFragment">
 
     <ScrollView
         android:layout_width="match_parent"
